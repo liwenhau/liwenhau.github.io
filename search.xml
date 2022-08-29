@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>redis获取值存在特殊字符</title>
+      <link href="/2022/08/29/redis%E8%8E%B7%E5%8F%96%E5%80%BC%E5%AD%98%E5%9C%A8%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6/"/>
+      <url>/2022/08/29/redis%E8%8E%B7%E5%8F%96%E5%80%BC%E5%AD%98%E5%9C%A8%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><blockquote><p>redis里的值是从PLC里采集保存的，所以会存在一些特殊Unicode字符补位</p></blockquote><p>代码如下</p><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//从redis取值</span></span><br><span class="line"><span class="keyword">var</span> data = <span class="keyword">await</span> RedisHelper.MGetAsync&lt;<span class="built_in">byte</span>[]&gt;(<span class="string">&quot;redis数组key&quot;</span>);</span><br><span class="line"><span class="comment">//byte数组过滤前两个特殊字符字节 然后转UTF8去除后面空格</span></span><br><span class="line"><span class="keyword">var</span> vlaue = System.Text.Encoding.UTF8.GetString(data[<span class="number">0</span>].Skip(<span class="number">2</span>).ToArry()).TrimEnd(<span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> C# </tag>
+            
+            <tag> 技术 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
